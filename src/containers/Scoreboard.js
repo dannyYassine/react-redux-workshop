@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as PlayerActionCreators from '../actions/player';
 import AddPlayerForm from '../components/AddPlayerForm';
 import Header from '../components/Header';
 import Player from '../components/Player';
+import { PlayerActionCreators } from '../actions/playerActionCreators';
 
 class Scoreboard extends Component {
 
     render() {
 
         const { dispatch, players } = this.props;
-        // instead of using bindActionCreators
-        const addPlayer = (name) => {
-            dispatch(PlayerActionCreators.addPlayer(name))
-        }
-        const removePlayer = (index) => {
-            dispatch(PlayerActionCreators.removePlayer(index))
-        }
-        const updatePlayerScore = (index, score) => {
-            dispatch(PlayerActionCreators.updatePlayerScore(index, score));
-        }
+        const playerActions = PlayerActionCreators(dispatch);
 
         const playerComponents = players.map((player, index) => (
             <Player
@@ -28,8 +19,8 @@ class Scoreboard extends Component {
                 name={player.name}
                 score={player.score}
                 key={player.id}
-                updatePlayerScore={updatePlayerScore}
-                removePlayer={removePlayer}
+                updatePlayerScore={playerActions.updatePlayerScore}
+                removePlayer={playerActions.removePlayer}
             />
         ));
 
@@ -39,7 +30,7 @@ class Scoreboard extends Component {
                 <div className="players">
                     {playerComponents}
                 </div>
-                <AddPlayerForm addPlayer={addPlayer} />
+                <AddPlayerForm addPlayer={playerActions.addPlayer} />
             </div>
         );
     }
