@@ -12,5 +12,5 @@ gulp.task('serve', function() {
             baseDir: ''
         }
     });
-    gulp.watch(['*.html', 'css/*.css', 'bundle.js'], {cwd: ''}, reload);
+    gulp.watch(['*.html', 'app.css', 'bundle.js'], {cwd: ''}, reload);
 });

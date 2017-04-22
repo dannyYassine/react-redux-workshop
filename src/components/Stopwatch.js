@@ -1,7 +1,7 @@
 /**
  * Created by dannyyassine on 2017-04-20.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 export default class Stopwatch extends Component {
 

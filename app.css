@@ -5,6 +5,10 @@ body {
   text-transform: uppercase;
 }
 
+button:focus, input:focus {
+  outline: 0;
+}
+
 .scoreboard {
   background: #333;
   width: 700px;
