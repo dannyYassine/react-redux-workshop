@@ -15,4 +15,11 @@ export default class LocalStateDataManager {
     static loadState() {
         return JSON.parse(localStorage.getItem('store')) || {players:[], selectedPlayerIndex: -1};
     }
+
+    static saveToken(token) {
+        localStorage.setItem('token', token);
+    }
+    static loadToken() {
+        return localStorage.getItem('token');
+    }
 }

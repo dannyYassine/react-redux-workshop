@@ -6,6 +6,7 @@ import { render } from 'react-dom'
 import Scoreboard from './src/containers/Scoreboard'
 import DribbbleContainer from './src/containers/DribbbleContainer'
 import HomeContainer from './src/containers/HomeContainer'
+import LoginForm from './src/components/LoginForm'
 import { Provider } from 'react-redux'
 import {
     BrowserRouter as Router,
@@ -17,6 +18,7 @@ import {
 import {store} from './src/store/scoreboardStore'
 import DribbbleListPresenter from './src/presenters/DribbbleListPresenter'
 import GetShots from './src/domain/interactors/getShots'
+import LocalStateDataManager from './src/middlewares/persistStateLocalManager'
 
 const DribbbleContainerComponent = () => (
     <DribbbleContainer
@@ -28,16 +30,11 @@ const Component404 = () => (
     <h1>404</h1>
 )
 
-const Login = () => (
-    <div>
-        <h1>Login</h1>
-    </div>
-)
-const loggedIn = false
+const loggedIn = LocalStateDataManager.loadToken() ? true : false
 
 const PrivateRoute = ({path, component}) => (
     <Route path={path} render={(props) => (
-        loggedIn ? (
+        LocalStateDataManager.loadToken() !== null ? (
             React.createElement(component, {})
         ) : (
             <Redirect to={{
@@ -71,7 +68,7 @@ const RouterRoot = () => (
                 <Route exact path="/" component={HomeContainer}/>
                 <Route path="/dribbble" component={DribbbleContainerComponent}/>
                 <Route path="/scoreboard" component={Scoreboard}/>
-                <Route path="/login" component={Login}/>
+                <Route path="/login" component={LoginForm}/>
                 <PrivateRoute path="/protected" component={ProtectedComponent}/>
                 <Route component={Component404}/>
             </Switch>
