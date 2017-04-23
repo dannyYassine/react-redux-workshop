@@ -8,6 +8,11 @@ export default class BaseComponent extends Component {
     constructor(props) {
         super(props)
         this.presenter = props.presenter || new BasePresenter()
+    }
+    componentWillMount() {
         this.presenter.bind(this)
+    }
+    componentDidMount() {
+        this.presenter.onLoad()
     }
 }

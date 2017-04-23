@@ -32,10 +32,6 @@ class DribbbleContainer extends BaseComponent {
         )
     }
 
-    componentDidMount() {
-        this.presenter.onLoad()
-    }
-
     // ViewInput
     handleShots(shots) {
         this.setState({
