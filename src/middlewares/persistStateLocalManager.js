@@ -13,6 +13,6 @@ export default class LocalStateDataManager {
     }
 
     static loadState() {
-        return JSON.parse(localStorage.getItem('store')) || [];
+        return JSON.parse(localStorage.getItem('store')) || {players:[], selectedPlayerIndex: -1};
     }
 }

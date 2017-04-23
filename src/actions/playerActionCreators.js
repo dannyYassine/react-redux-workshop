@@ -14,6 +14,9 @@ export const PlayerActionCreators = (dispatch) => {
         },
         updatePlayerScore : (index, score) => {
             dispatch(PlayerActions.updatePlayerScore(index, score));
+        },
+        selectPlayer : (index) => {
+            dispatch(PlayerActions.selectPlayer(index))
         }
     }
 }

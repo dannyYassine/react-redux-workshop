@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Player = (props) => {
     return (
         <div className="player">
-            <div className="player-name">
+            <div className="player-name" onClick={ () => props.selectPlayer(props.index)}>
                 <a className="remove-player" onClick={ () => props.removePlayer(props.index) }>✖</a>
                 {props.name}
             </div>

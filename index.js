@@ -5,14 +5,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import Scoreboard from './src/containers/Scoreboard'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import PlayerReducer from './src/reducers/players'
-import { persistStateToLocalStorageMiddleware } from './src/middlewares/persistStateLocalManager'
 
-const store = createStore(
-    PlayerReducer,
-    applyMiddleware(persistStateToLocalStorageMiddleware),
-)
+import {store} from './src/store/scoreboardStore'
 
 render(
     <Provider store={store}>
