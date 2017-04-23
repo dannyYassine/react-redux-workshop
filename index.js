@@ -24,6 +24,39 @@ const DribbbleContainerComponent = () => (
     />
 )
 
+const Component404 = () => (
+    <h1>404</h1>
+)
+
+const Login = () => (
+    <div>
+        <h1>Login</h1>
+    </div>
+)
+const loggedIn = false
+
+const PrivateRoute = ({path, component}) => (
+    <Route path={path} render={(props) => (
+        loggedIn ? (
+            React.createElement(component, {})
+        ) : (
+            <Redirect to={{
+                pathname: '/login',
+                state: {from: props.location}
+            }}/>
+        )
+    )}/>
+)
+
+const ProtectedComponent = () => {
+
+    let text = 'Protected'
+
+    return (
+        <div>{text}</div>
+    )
+}
+
 const RouterRoot = () => (
     <Router>
         <div>
@@ -31,13 +64,16 @@ const RouterRoot = () => (
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/dribbble">Dribbble</Link></li>
                 <li><Link to="/scoreboard">Scoreboard</Link></li>
+                <li><Link to="/protected">Protected</Link></li>
             </ul>
 
             <Switch>
                 <Route exact path="/" component={HomeContainer}/>
                 <Route path="/dribbble" component={DribbbleContainerComponent}/>
                 <Route path="/scoreboard" component={Scoreboard}/>
-                <Route component={HomeContainer}/>
+                <Route path="/login" component={Login}/>
+                <PrivateRoute path="/protected" component={ProtectedComponent}/>
+                <Route component={Component404}/>
             </Switch>
         </div>
     </Router>
