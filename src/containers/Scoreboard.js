@@ -12,9 +12,6 @@ class Scoreboard extends Component {
 
     constructor(props) {
         super(props)
-        store.subscribe(() => {
-            console.log(store);
-        })
     }
 
     render() {
