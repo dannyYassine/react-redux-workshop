@@ -9,15 +9,19 @@ import HomeContainer from './src/containers/HomeContainer'
 import { Provider } from 'react-redux'
 import {
     BrowserRouter as Router,
+    Switch,
     Route,
     Redirect,
     Link
 } from 'react-router-dom'
 import {store} from './src/store/scoreboardStore'
 import DribbbleListPresenter from './src/presenters/DribbbleListPresenter'
+import GetShots from './src/domain/interactors/getShots'
 
 const DribbbleContainerComponent = () => (
-    <DribbbleContainer presenter={new DribbbleListPresenter()}/>
+    <DribbbleContainer
+        presenter={new DribbbleListPresenter(new GetShots())}
+    />
 )
 
 const RouterRoot = () => (
@@ -29,10 +33,12 @@ const RouterRoot = () => (
                 <li><Link to="/scoreboard">Scoreboard</Link></li>
             </ul>
 
-            <Route exact path="/" component={HomeContainer}/>
-            <Route path="/dribbble" component={DribbbleContainerComponent}/>
-            <Route path="/scoreboard" component={Scoreboard}/>
-            <Redirect to="/"/>
+            <Switch>
+                <Route exact path="/" component={HomeContainer}/>
+                <Route path="/dribbble" component={DribbbleContainerComponent}/>
+                <Route path="/scoreboard" component={Scoreboard}/>
+                <Route component={HomeContainer}/>
+            </Switch>
         </div>
     </Router>
 )

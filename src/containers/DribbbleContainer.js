@@ -22,12 +22,15 @@ class DribbbleContainer extends BaseComponent {
         const { dispatch } = this.props
         const shotsComponent = this.state.shots.map((shot, index) => {
             return(
-                    <img src={shot.images.normal}/>
+                <div className="cell-4">
+                    <img className="detail-image" key={shot.id} src={shot.images.normal}/>
+                </div>
             )
         })
+        const initialComponent = this.state.shots.length === 0 ? (<h1>Loading shots...</h1>) : (shotsComponent)
         return(
-            <div>
-                {shotsComponent}
+            <div className="center grid">
+                {initialComponent}
             </div>
         )
     }

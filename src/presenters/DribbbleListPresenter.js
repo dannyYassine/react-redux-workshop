@@ -5,8 +5,12 @@ import BasePresenter from '../presenters/BasePresenter'
 import GetShots from '../domain/interactors/getShots'
 
 export default class DribbbleListPresenter extends BasePresenter {
+    constructor(getShots) {
+        super()
+        this.getShotsInteractor = getShots
+    }
     onLoad() {
-        new GetShots().getShots(1, (shots) => {
+        this.getShotsInteractor.getShots(1, (shots) => {
             this.component.handleShots(shots)
         })
     }

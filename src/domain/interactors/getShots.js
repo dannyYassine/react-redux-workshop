@@ -2,7 +2,7 @@
  * Created by dannyyassine on 2017-03-13.
  */
 
-import {DribbbleWebService} from './../../data/network/dribbbleWebService';
+import { DribbbleWebService } from './../../data/network/dribbbleWebService';
 
 export default class GetShots {
 
