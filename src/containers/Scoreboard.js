@@ -7,11 +7,19 @@ import Player from '../components/Player';
 import { PlayerActionCreators } from '../actions/playerActionCreators';
 import {store} from './../store/scoreboardStore'
 import PlayerDetail from '../components/PlayerDetail'
+import BaseComponent from '../base/BaseComponent';
 
-class Scoreboard extends Component {
+class Scoreboard extends BaseComponent {
 
     constructor(props) {
         super(props)
+    }
+
+    componentDidMount() {
+    }
+
+    refreshData = (e) => {
+        this.presenter.onRefreshData()
     }
 
     render() {
@@ -34,6 +42,7 @@ class Scoreboard extends Component {
         let playerDetailComponent = selectedPlayerIndex === -1 ? (<div/>) : (<PlayerDetail selectedPlayer={players[selectedPlayerIndex]}/>)
         return (
             <div className="scoreboard">
+                <button onClick={this.refreshData}>RESET</button>
                 <Header players={players} />
                 <div className="players">
                     {playerComponents}
@@ -43,6 +52,14 @@ class Scoreboard extends Component {
             </div>
         );
     }
+
+
+    // View
+    handlePlayers(players) {
+        const playerActions = PlayerActionCreators(this.props.dispatch);
+        playerActions.resetList(players)
+    }
+
 }
 
 Scoreboard.propTypes = {

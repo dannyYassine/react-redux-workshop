@@ -11,7 +11,7 @@ export default class DribbbleListPresenter extends BasePresenter {
     }
     onLoad() {
         this.getShotsInteractor.getShots(1, (shots) => {
-            this.component.handleShots(shots)
+            this.view.handleShots(shots)
         })
     }
 }

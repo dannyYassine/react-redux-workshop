@@ -17,6 +17,9 @@ export const PlayerActionCreators = (dispatch) => {
         },
         selectPlayer : (index) => {
             dispatch(PlayerActions.selectPlayer(index))
+        },
+        resetList: (newPlayers) => {
+            dispatch(PlayerActions.resetList(newPlayers))
         }
     }
 }

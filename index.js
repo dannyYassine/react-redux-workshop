@@ -19,12 +19,18 @@ import {store} from './src/store/scoreboardStore'
 import DribbbleListPresenter from './src/presenters/DribbbleListPresenter'
 import GetShots from './src/domain/interactors/getShots'
 import LocalStateDataManager from './src/middlewares/persistStateLocalManager'
+import ScoreboardPresenter from './src/presenters/ScoreboardPresenter';
 
 const DribbbleContainerComponent = () => (
     <DribbbleContainer
         presenter={new DribbbleListPresenter(new GetShots())}
     />
 )
+
+const ScoreboadFactory = () => (
+    <Scoreboard presenter={new ScoreboardPresenter()}/>
+)
+
 
 const Component404 = () => (
     <h1>404</h1>
@@ -67,7 +73,7 @@ const RouterRoot = () => (
             <Switch>
                 <Route exact path="/" component={HomeContainer}/>
                 <Route path="/dribbble" component={DribbbleContainerComponent}/>
-                <Route path="/scoreboard" component={Scoreboard}/>
+                <Route path="/scoreboard" component={ScoreboadFactory}/>
                 <Route path="/login" component={LoginForm}/>
                 <PrivateRoute path="/protected" component={ProtectedComponent}/>
                 <Route component={Component404}/>

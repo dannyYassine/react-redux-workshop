@@ -4,7 +4,7 @@
 
 export default class BasePresenter {
     bind(component) {
-        this.component = component
+        this.view = component
     }
     onLoad() {}
 }

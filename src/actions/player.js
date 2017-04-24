@@ -31,3 +31,10 @@ export const selectPlayer = (index) => {
         index
     }
 };
+
+export const resetList = (newPlayers) => {
+    return {
+        type: PlayerActionTypes.RESET_LIST,
+        newPlayers
+    }
+}

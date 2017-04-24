@@ -73,6 +73,14 @@ export default function PlayerReducer(state=initialState, action) {
                 ...state,
                 selectedPlayerIndex: action.index
             }
+        case PlayerActionTypes.RESET_LIST:
+            const resetPlayerList = [
+
+            ]
+            return {
+                ...state,
+                players: action.newPlayers
+            }
         default:
             return state
     }

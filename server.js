@@ -12,6 +12,42 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
+function getRandomArbitrary(min=0, max=1000000) {
+    return Math.floor(Math.random() * (max - min)) + min
+}
+
+app.get('/users', function (request, response) {
+
+    let date = new Date()
+    let day = date.getDate();
+    let month = date.getMonth()+1;
+    let year = date.getFullYear();
+
+    response.json([
+        {
+            name: 'Joe',
+            score: 0,
+            id: getRandomArbitrary(),
+            created: `${day}/${month}/${year}`,
+            updated: `${day}/${month}/${year}`
+        },
+        {
+            name: 'Sam',
+            score: 0,
+            id: getRandomArbitrary(),
+            created: `${day}/${month}/${year}`,
+            updated: `${day}/${month}/${year}`
+        },
+        {
+            name: 'Beef',
+            score: 0,
+            id: getRandomArbitrary(),
+            created: `${day}/${month}/${year}`,
+            updated: `${day}/${month}/${year}`
+        }
+    ])
+})
+
 app.get('*', function(req, res) {
     res.sendFile('index.html', { root: __dirname });
 });
